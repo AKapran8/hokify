@@ -29,8 +29,9 @@ export default Vue.extend({
   },
   methods: {
     toggleTheme(): void {
-      document.body.classList.toggle('bg-black')
-      document.body.classList.toggle('text-white')
+      document.body.classList.toggle('dark');
+      document.body.classList.toggle('dark:bg-black');
+      document.body.classList.toggle('dark:text-white');
     },
   },
 })
