@@ -1,8 +1,8 @@
 <template>
   <div>
     <Header />
-    <Form />
-    <ModalWindow />
+    {{ user.name || 'NAME' }}
+    {{ user.LastName }}
   </div>
 </template>
 
@@ -14,7 +14,8 @@ export default Vue.extend({
     return {}
   },
   computed: {
-    siteName() {
+    user() {
+      console.log('this.$store.getters.getUser ', this.$store.getters.getUser)
       return this.$store.getters.getUser
     }
   }

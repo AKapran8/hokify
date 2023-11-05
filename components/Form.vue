@@ -5,7 +5,7 @@
         <label
           for="name"
           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >Name</label
+          >Vorname</label
         >
         <input
           id="name"
@@ -23,7 +23,7 @@
         <label
           for="last-name"
           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >Last Name</label
+          >Nachname</label
         >
         <input
           id="last-name"
@@ -51,20 +51,15 @@
           autocomplete="email"
           class="input-field"
           required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
         />
-        <span
-          class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block"
-        >
-          Please enter a valid email address
-        </span>
       </div>
 
       <div>
         <label
           for="gender"
           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >Select an option</label
+          >Geschlecht</label
         >
         <select
           id="gender"
@@ -74,8 +69,8 @@
           class="input-field"
         >
           <option>--NONE--</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
+          <option value="MALE">Male</option>
+          <option value="FEMALE">Female</option>
         </select>
       </div>
 
@@ -83,7 +78,7 @@
         <label
           for="note"
           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >Your message</label
+          >Nachricht</label
         >
         <textarea
           id="note"
@@ -91,6 +86,7 @@
           rows="4"
           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Write your note here..."
+          pattern=".{2,}"
           maxlength="150"
         ></textarea>
       </div>
@@ -98,8 +94,8 @@
       <div>
         <button
           type="button"
-          @click="resetForm"
           class="button-field bg-red-700 hover:bg-red-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          @click="resetForm"
         >
           Reset Form
         </button>
@@ -118,13 +114,7 @@
 <script lang="ts">
 import Vue from 'vue'
 
-interface IUser {
-  name: string
-  lastName: string
-  email: string
-  gender: string
-  note?: string
-}
+import { IUserData } from '~/models/user-data.model'
 
 export default Vue.extend({
   data() {
@@ -136,7 +126,7 @@ export default Vue.extend({
         email: '',
         gender: '',
         note: '',
-      } as IUser,
+      } as IUserData,
     }
   },
   methods: {
@@ -145,33 +135,34 @@ export default Vue.extend({
 
       if (!isValid) return
 
-      console.log(this.user)
+      this.$store.dispatch('createUser', this.user)
+      this.resetForm()
+
+      setTimeout(() => {
+        console.log(this.$store.getters.getUser)
+      }, 500)
     },
 
     validationChecker(): boolean {
-      const { name, lastName, gender, email } = this.user
+      const { name, lastName, gender, email, note } = this.user
 
       const isNotEmpty = (value: string) => value.trim().length > 0
       const isEmailValid = (value: string) => {
-        const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
         return emailRegex.test(value)
       }
-
       return (
         isNotEmpty(name) &&
         isNotEmpty(lastName) &&
         isNotEmpty(email) &&
+        isNotEmpty(note) &&
         isNotEmpty(gender) &&
         isEmailValid(email)
       )
     },
 
-    resetForm(): void {
-      this.user.name = ''
-      this.user.lastName = ''
-      this.user.email = ''
-      this.user.gender = ''
-      this.user.note = ''
+    resetForm() {
+      this.user = this.$store.getters.getEmptyUser
     },
   },
 })
