@@ -15,11 +15,13 @@ export const state = () => ({
     gender: '',
     note: '',
   } as IUserData,
+  isSubmitted: false,
 });
 
 export const mutations = {
-  setUser(state: { user: IUserData; } , data: IUserData) {
+  setUser(state: { user: IUserData; isSubmitted: boolean} , data: IUserData) {
     state.user = data;
+    state.isSubmitted = true;
   },
   resetUser(state: { user: IUserData; }) {
     state.user = {
@@ -38,6 +40,9 @@ export const getters = {
   },
   getEmptyUser(state: { user: IUserData; emptyUser: IUserData }) {
     return state.emptyUser
+  },
+  getSubmitStatus(state: { user: IUserData; isSubmitted: boolean}) {
+    return state.isSubmitted
   }
 }
 

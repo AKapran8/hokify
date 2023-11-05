@@ -1,10 +1,10 @@
 <template>
-  <div class="form-block mt-10 mx-auto mb-0">
+  <div class="form-block items-center mt-10 mx-auto mb-0">
     <form @submit.prevent="submitForm">
       <div class="mb-6">
         <label
           for="name"
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          class="label-field"
           >Vorname</label
         >
         <input
@@ -22,7 +22,7 @@
       <div class="mb-6">
         <label
           for="last-name"
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          class="label-field"
           >Nachname</label
         >
         <input
@@ -40,7 +40,7 @@
       <div class="mb-6">
         <label
           for="email"
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          class="label-field"
           >Email</label
         >
         <input
@@ -51,14 +51,14 @@
           autocomplete="email"
           class="input-field"
           required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
         />
       </div>
 
       <div>
         <label
           for="gender"
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          class="label-field"
           >Geschlecht</label
         >
         <select
@@ -68,7 +68,6 @@
           placeholder="Choose your gender"
           class="input-field"
         >
-          <option>--NONE--</option>
           <option value="MALE">Male</option>
           <option value="FEMALE">Female</option>
         </select>
@@ -77,14 +76,14 @@
       <div class="mt-3 mb-3">
         <label
           for="note"
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          class="label-field"
           >Nachricht</label
         >
         <textarea
           id="note"
           v-model="user.note"
           rows="4"
-          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-400 focus:border-blue-400"
           placeholder="Write your note here..."
           pattern=".{2,}"
           maxlength="150"
@@ -94,7 +93,7 @@
       <div>
         <button
           type="button"
-          class="button-field bg-red-700 hover:bg-red-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          class="inline-flex rounded-full justify-center items-center border px-11 py-1 bg-red-700 hover:bg-red-800"
           @click="resetForm"
         >
           Reset Form
@@ -102,7 +101,7 @@
         <button
           :disabled="isSubmitting"
           type="submit"
-          class="button-field bg-green-700 hover:bg-green-800 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ml-2"
+          class="inline-flex rounded-full justify-center items-center border px-11 py-1 ml-3 btn-color"
         >
           Save Data
         </button>
@@ -121,34 +120,26 @@ export default Vue.extend({
     return {
       isSubmitting: false,
       user: {
-        name: '',
-        lastName: '',
-        email: '',
-        gender: '',
-        note: '',
+        name: 'qwe',
+        lastName: 'qwe',
+        email: 'qweqw@qweq.qwe',
+        gender: 'MALE',
+        note: 'Lorem',
       } as IUserData,
     }
   },
   methods: {
     submitForm(): void {
       const isValid: boolean = this.validationChecker()
-
       if (!isValid) return
-
       this.$store.dispatch('createUser', this.user)
       this.resetForm()
-
-      setTimeout(() => {
-        console.log(this.$store.getters.getUser)
-      }, 500)
     },
-
     validationChecker(): boolean {
       const { name, lastName, gender, email, note } = this.user
-
       const isNotEmpty = (value: string) => value.trim().length > 0
       const isEmailValid = (value: string) => {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/g
         return emailRegex.test(value)
       }
       return (
@@ -160,8 +151,7 @@ export default Vue.extend({
         isEmailValid(email)
       )
     },
-
-    resetForm() {
+    resetForm(): void {
       this.user = this.$store.getters.getEmptyUser
     },
   },
@@ -169,15 +159,36 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.btn-color {
+  border-color: #0fb1af;
+  background-color: #0fb1af;
+}
+
+.btn-color:hover {
+  border-color: #106463;
+  background-color: #106463;
+  transition: 0.5s ease;
+}
 .form-block {
-  max-width: 500px;
-  align-items: center;
+  max-width: 400px;
 }
 .input-field {
-  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+  @apply bg-transparent border border-gray-300 rounded-md transition duration-300 w-full pl-2 pt-1 pb-1;
+  color: black;
 }
+.label-field {
+  @apply block mb-2 text-sm;
+}
+
 
 .button-field {
   @apply focus:outline-none text-white  focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2;
+}
+
+label {
+  color: rgb(174, 174, 178);
+}
+button {
+  color: #fff;
 }
 </style> 
