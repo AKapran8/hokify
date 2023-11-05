@@ -1,19 +1,38 @@
 <template>
   <header class="bg-header">
-    <nav class="container mx-auto p-3 flex justify-between">
-      <NuxtLink to="/" >
+    <div class="container mx-auto p-3 flex justify-between">
+      <NuxtLink to="/">
         <img src="./../static/logo.svg" class="h-9 inline-block" alt="Logo">
       </NuxtLink>
-      <ul class="flex gap-4">
-        <li class="cursor-pointer text-white hover:border-b-4 font-bold transition-transform duration-300">
-          <NuxtLink to="/">Form</NuxtLink>
-        </li>
-      </ul>
-    </nav>
+
+      <ThemeToggler @toggle-theme="toggleTheme" />
+    </div>
   </header>
 </template>
 
-<style>
+
+
+
+
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: "HeaderComponent",
+  data() {
+    return {};
+  },
+  methods: {
+    toggleTheme(): void {
+      document.body.classList.toggle('bg-black');
+      document.body.classList.toggle('text-white');
+    }
+  }
+})
+</script>
+
+<style scoped>
 .bg-header {
   background: #0fb1af;
 }
