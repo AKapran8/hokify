@@ -2,11 +2,7 @@
   <div class="form-block items-center mt-10 mx-auto mb-0">
     <form @submit.prevent="submitForm">
       <div class="mb-6">
-        <label
-          for="name"
-          class="label-field"
-          >Vorname</label
-        >
+        <label for="name" class="label-field">Vorname</label>
         <input
           id="name"
           v-model="user.name"
@@ -20,11 +16,7 @@
       </div>
 
       <div class="mb-6">
-        <label
-          for="last-name"
-          class="label-field"
-          >Nachname</label
-        >
+        <label for="last-name" class="label-field">Nachname</label>
         <input
           id="last-name"
           v-model="user.lastName"
@@ -38,11 +30,7 @@
       </div>
 
       <div class="mb-6">
-        <label
-          for="email"
-          class="label-field"
-          >Email</label
-        >
+        <label for="email" class="label-field">Email</label>
         <input
           id="email"
           v-model="user.email"
@@ -56,11 +44,7 @@
       </div>
 
       <div>
-        <label
-          for="gender"
-          class="label-field"
-          >Geschlecht</label
-        >
+        <label for="gender" class="label-field">Geschlecht</label>
         <select
           id="gender"
           v-model="user.gender"
@@ -74,11 +58,7 @@
       </div>
 
       <div class="mt-3 mb-3">
-        <label
-          for="note"
-          class="label-field"
-          >Nachricht</label
-        >
+        <label for="note" class="label-field">Nachricht</label>
         <textarea
           id="note"
           v-model="user.note"
@@ -107,6 +87,7 @@
         </button>
       </div>
     </form>
+    <ModalWindow class="absolute top-40 z-3" :is-visible="isModalVisible" @close="closeModal" />
   </div>
 </template>
 
@@ -119,6 +100,7 @@ export default Vue.extend({
   data() {
     return {
       isSubmitting: false,
+      isModalVisible: false,
       user: {
         name: 'qwe',
         lastName: 'qwe',
@@ -133,6 +115,7 @@ export default Vue.extend({
       const isValid: boolean = this.validationChecker()
       if (!isValid) return
       this.$store.dispatch('createUser', this.user)
+      this.isModalVisible = true
       this.resetForm()
     },
     validationChecker(): boolean {
@@ -153,6 +136,9 @@ export default Vue.extend({
     },
     resetForm(): void {
       this.user = this.$store.getters.getEmptyUser
+    },
+    closeModal() {
+      this.isModalVisible = false
     },
   },
 })
@@ -180,7 +166,6 @@ export default Vue.extend({
   @apply block mb-2 text-sm;
 }
 
-
 .button-field {
   @apply focus:outline-none text-white  focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2;
 }
@@ -191,4 +176,4 @@ label {
 button {
   color: #fff;
 }
-</style> 
+</style>
