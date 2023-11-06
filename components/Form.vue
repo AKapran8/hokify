@@ -76,18 +76,22 @@
           class="inline-flex rounded-full justify-center items-center border px-11 py-1 bg-red-700 hover:bg-red-800"
           @click="resetForm"
         >
-          Reset Form
+          Formular leeren
         </button>
         <button
           :disabled="isSubmitting"
           type="submit"
           class="inline-flex rounded-full justify-center items-center border px-11 py-1 ml-3 btn-color"
         >
-          Save Data
+          Senden
         </button>
       </div>
     </form>
-    <ModalWindow class="absolute top-40 z-3" :is-visible="isModalVisible" @close="closeModal" />
+    <ModalWindow
+      class="absolute top-40 z-3"
+      :is-visible="isModalVisible"
+      @close-modal="closeModal"
+    />
   </div>
 </template>
 

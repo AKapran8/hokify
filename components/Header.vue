@@ -6,11 +6,14 @@
       </NuxtLink>
 
       <div class="flex gap-3">
-        <NuxtLink to="/user" exact-active-class="border-b-2">
-          <p
-            class="text-xl hover:border-b-2 font-bold"
-          >
-            User
+        <NuxtLink
+          to="/user"
+          exact-active-class="border-b-2"
+          class="hover:border-b-2"
+        >
+          <p class="text-xl font-bold">
+            Benutzer/in
+            <span v-if="user && user.name.length">{{ user.name }}</span>
           </p>
         </NuxtLink>
 
@@ -27,9 +30,14 @@ export default Vue.extend({
   data() {
     return {}
   },
+  computed: {
+    user() {
+      return this.$store.getters.getUser
+    },
+  },
   methods: {
     toggleTheme(): void {
-      document.body.classList.toggle('dark');
+      document.body.classList.toggle('dark')
     },
   },
 })
@@ -40,7 +48,8 @@ export default Vue.extend({
   background: #0fb1af;
 }
 
-p {
-  color: #fff
+p,
+span {
+  color: #fff;
 }
 </style>

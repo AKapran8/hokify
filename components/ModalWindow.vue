@@ -45,7 +45,7 @@ export default {
   methods: {
     closeModal() {
       // @ts-ignore
-      this.$emit('close')
+      this.$emit('close-modal')
     },
   },
 }
