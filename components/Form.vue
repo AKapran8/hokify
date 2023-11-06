@@ -1,6 +1,6 @@
 <template>
   <div class="form-block items-center mt-10 mx-auto mb-0 sm:mt-4">
-    <form class="sm:max-w-screen-xl sm:mx-auto" @submit.prevent="submitForm">
+    <form @submit.prevent="submitForm">
       <div class="mb-6">
         <label for="name" class="label-field">Vorname</label>
         <input
@@ -186,15 +186,5 @@ button {
     max-width: 80vw;
     margin: 0 auto;
   }
-  /* .btn-actions {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  } */
-
-  /* .btn-color {
-    margin: 0;
-  } */
 }
 </style>

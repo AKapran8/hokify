@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10 mx-auto mb-0">
+  <div class="mt-10 mx-auto mb-0 sm:mx-auto sm:mt-2 sm:px-4">
     <h1 class="text-2xl font-semibold mb-4">Nutzerinformation</h1>
     <div v-if="user.name.length">
       <p class="text-gray-700 user-info">Nachname: {{ user.name }}</p>

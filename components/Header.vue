@@ -38,6 +38,11 @@ export default Vue.extend({
   methods: {
     toggleTheme(): void {
       document.body.classList.toggle('dark')
+      const htmlElement = document.documentElement
+      const currentTheme = htmlElement.getAttribute('data-theme')
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light'
+      htmlElement.setAttribute('data-theme', newTheme)
+      document.body.setAttribute('data-theme', newTheme)
     },
   },
 })
@@ -53,12 +58,11 @@ span {
   color: #fff;
 }
 
-
 @media only screen and (max-width: 628px) {
   .form-block {
     margin-top: 1rem;
   }
-  .form-block form{
+  .form-block form {
     max-width: 80vw;
     margin: 0 auto;
   }
