@@ -1,7 +1,14 @@
 <template>
   <div>
     <transition name="fade">
-      <div v-if="isVisible" class="bg-black">
+      <div
+        v-if="isVisible"
+        class="fixed inset-0 flex items-center justify-center z-50"
+      >
+        <div
+          class="fixed inset-0 bg-gray-800 opacity-50"
+          @click="closeModal"
+        ></div>
         <div
           class="w-full max-w-lg p-3 relative mx-auto my-auto rounded-xl shadow-lg bg-white"
         >
@@ -26,6 +33,7 @@
   </div>
 </template>
 
+
 <script lang="ts">
 export default {
   props: {
@@ -35,7 +43,8 @@ export default {
     return {}
   },
   methods: {
-    closeModal(): void {
+    closeModal() {
+      // @ts-ignore
       this.$emit('close')
     },
   },
