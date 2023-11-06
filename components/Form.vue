@@ -52,7 +52,6 @@
           id="gender"
           v-model="user.gender"
           name="gender"
-          placeholder="Ihr Geschlecht"
           class="input-field"
         >
           <option value="MALE">Male</option>
@@ -68,8 +67,8 @@
           rows="4"
           class="textarea-field"
           placeholder="Ihre Nachricht..."
-          pattern=".{2,}"
           maxlength="150"
+          pattern=".{2,}"
         ></textarea>
       </div>
 
@@ -109,11 +108,11 @@ export default Vue.extend({
       isSubmitting: false,
       isModalVisible: false,
       user: {
-        name: 'qwe',
-        lastName: 'qwe',
-        email: 'qweqw@qweq.qwe',
-        gender: 'MALE',
-        note: 'Lorem',
+        name: '',
+        lastName: '',
+        email: '',
+        gender: '',
+        note: '',
       } as IUserData,
     }
   },
