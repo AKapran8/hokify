@@ -1,6 +1,6 @@
 <template>
-  <div class="form-block items-center mt-10 mx-auto mb-0 sm:mt-4">
-    <form @submit.prevent="submitForm">
+  <div class="form-block items-center mt-10 mx-auto mb-0 sm:px-4 sm:mt-3">
+    <form class="sm:mx-auto" @submit.prevent="submitForm">
       <div class="mb-6">
         <label for="name" class="label-field">Vorname</label>
         <input
@@ -52,7 +52,7 @@
           id="gender"
           v-model="user.gender"
           name="gender"
-          placeholder="Wählen Sie ihr Geschlecht"
+          placeholder="Ihr Geschlecht"
           class="input-field"
         >
           <option value="MALE">Male</option>
@@ -66,17 +66,17 @@
           id="note"
           v-model="user.note"
           rows="4"
-          class="block bg-transparent p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-400 focus:border-blue-400"
-          placeholder="Schreiben Ihre Nachricht..."
+          class="textarea-field"
+          placeholder="Ihre Nachricht..."
           pattern=".{2,}"
           maxlength="150"
         ></textarea>
       </div>
 
-      <div class="sm:mt-4 sm:flex sm:flex-col sm:gap-4">
+      <div class="mt-8 sm:mt-4 sm:flex sm:flex-col sm:gap-4">
         <button
           type="button"
-          class="inline-flex rounded-full justify-center items-center border px-11 py-1 bg-red-700 hover:bg-red-800"
+          class="button-field bg-red-700 hover:bg-red-800"
           @click="resetForm"
         >
           Formular leeren
@@ -84,7 +84,7 @@
         <button
           :disabled="isSubmitting"
           type="submit"
-          class="inline-flex rounded-full justify-center items-center border px-11 py-1 ml-3 btn-color sm:m-0"
+          class="button-field ml-3 btn-color sm:m-0"
         >
           Senden
         </button>
@@ -166,28 +166,17 @@ export default Vue.extend({
   max-width: 400px;
 }
 .input-field {
-  @apply bg-transparent border border-gray-300 rounded-md transition duration-300 w-full pl-2 pt-1 pb-1;
-  color: black;
+  @apply bg-transparent border border-gray-300 rounded-md transition duration-300 w-full pl-2 pt-1 pb-1 text-black;
 }
 .label-field {
-  @apply block mb-2 text-sm;
+  @apply block mb-2 text-sm text-gray-400;
 }
 
 .button-field {
-  @apply focus:outline-none text-white  focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2;
+  @apply inline-flex rounded-full justify-center items-center border px-11 py-1  text-white;
 }
 
-label {
-  color: rgb(174, 174, 178);
-}
-button {
-  color: #fff;
-}
-
-@media only screen and (max-width: 628px) {
-  .form-block form {
-    max-width: 80vw;
-    margin: 0 auto;
-  }
+.textarea-field {
+  @apply block bg-transparent p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-400 focus:border-blue-400;
 }
 </style>

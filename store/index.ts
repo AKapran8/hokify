@@ -8,13 +8,6 @@ export const state = () => ({
     gender: '',
     note: '',
   } as IUserData,
-  emptyUser: {
-    name: '',
-    lastName: '',
-    email: '',
-    gender: '',
-    note: '',
-  } as IUserData, // Not sure, I think it useless
   isSubmitted: false,
 })
 
@@ -38,8 +31,14 @@ export const getters = {
   getUser(state: { user: IUserData }) {
     return state.user
   },
-  getEmptyUser(state: { user: IUserData; emptyUser: IUserData }) {
-    return state.emptyUser
+  getEmptyUser() {
+    return {
+      name: '',
+      lastName: '',
+      email: '',
+      gender: '',
+      note: '',
+    }
   },
   getSubmitStatus(state: { user: IUserData; isSubmitted: boolean }) {
     return state.isSubmitted

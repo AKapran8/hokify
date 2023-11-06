@@ -11,9 +11,11 @@
           exact-active-class="border-b-2"
           class="hover:border-b-2"
         >
-          <p class="text-xl font-bold sm:text-sm">
-            Benutzer/in
-            <span v-if="user && user.name.length">{{ user.name }}</span>
+          <p
+            v-if="user && user.name.length"
+            class="text-xl font-bold sm:text-sm"
+          >
+            {{ user.name }} Informationen
           </p>
         </NuxtLink>
 
