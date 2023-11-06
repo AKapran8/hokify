@@ -1,4 +1,16 @@
 .dark {
   color: #fff !important;
-  background-color: #000 !important;
+  background-color: #333333 !important;
+}
+
+.dark select, .dark input, .dark textarea, .dark label  {
+  color: #fff !important;
+} 
+
+.dark textarea {
+  background-color: #333333 !important;
+}
+
+.dark .user-info {
+  color: #fff !important
 }

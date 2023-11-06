@@ -2,13 +2,13 @@
   <div class="mt-10 mx-auto mb-0">
     <h1 class="text-2xl font-semibold mb-4">Nutzerinformation</h1>
     <div v-if="user.name.length">
-      <p class="text-gray-700">Nachname: {{ user.name }}</p>
-      <p class="text-gray-700">Vorname: {{ user.lastName }}</p>
-      <p class="text-gray-700">Email: {{ user.email }}</p>
-      <p class="text-gray-700">Geschlecht: {{ user.gender }}</p>
-      <p class="text-gray-700">Nachricht: {{ user.note }}</p>
+      <p class="text-gray-700 user-info">Nachname: {{ user.name }}</p>
+      <p class="text-gray-700 user-info">Vorname: {{ user.lastName }}</p>
+      <p class="text-gray-700 user-info">Email: {{ user.email }}</p>
+      <p class="text-gray-700 user-info">Geschlecht: {{ user.gender }}</p>
+      <p class="text-gray-700 user-info">Nachricht: {{ user.note }}</p>
     </div>
-    <p v-else class="text-gray-700">
+    <p v-else class="text-gray-700 user-info">
       Keine Information. Bitte legen Sie neue Benutzerdaten fest.
     </p>
     <button

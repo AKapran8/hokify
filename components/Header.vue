@@ -11,7 +11,7 @@
           exact-active-class="border-b-2"
           class="hover:border-b-2"
         >
-          <p class="text-xl font-bold">
+          <p class="text-xl font-bold sm:text-sm">
             Benutzer/in
             <span v-if="user && user.name.length">{{ user.name }}</span>
           </p>
@@ -51,5 +51,27 @@ export default Vue.extend({
 p,
 span {
   color: #fff;
+}
+
+
+@media only screen and (max-width: 628px) {
+  .form-block {
+    margin-top: 1rem;
+  }
+  .form-block form{
+    max-width: 80vw;
+    margin: 0 auto;
+  }
+
+  .btn-actions {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn-color {
+    margin: 0;
+  }
 }
 </style>
