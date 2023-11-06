@@ -11,6 +11,7 @@
           autocomplete="on"
           class="input-field"
           required
+          placeholder="Vorname"
           pattern=".{2,}"
         />
       </div>
@@ -25,6 +26,7 @@
           autocomplete="on"
           class="input-field"
           required
+          placeholder="Nachname"
           pattern=".{2,}"
         />
       </div>
@@ -39,6 +41,7 @@
           autocomplete="email"
           class="input-field"
           required
+          placeholder="Email"
           pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
         />
       </div>
@@ -49,7 +52,7 @@
           id="gender"
           v-model="user.gender"
           name="gender"
-          placeholder="Choose your gender"
+          placeholder="Wählen Sie ihr Geschlecht"
           class="input-field"
         >
           <option value="MALE">Male</option>

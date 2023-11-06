@@ -3,7 +3,7 @@
   background-color: #333333 !important;
 }
 
-.dark select, .dark input, .dark textarea, .dark placeholder, .dark label  {
+.dark select, .dark input, .dark textarea, .dark textarea::placeholder, .dark label  {
   color: #fff !important;
 } 
 
